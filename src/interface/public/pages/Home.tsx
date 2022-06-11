@@ -6,7 +6,9 @@ import { Card, CardContent, CardHeader, CardMedia } from '@mui/material';
 const Home = () => {
   return (
     <>
-      <ProductsCarousel />
+      <section className="bg-gray-300 px-[10%] py-10">
+        <ProductsCarousel />
+      </section>
 
       <section>
         <h2>Scientech</h2>

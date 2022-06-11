@@ -26,8 +26,8 @@ export default ProductsCarousel;
 
 const Slide = ({ product: { title, description, target } }: SlideProps) => {
   return (
-    <Paper>
-      <div className="grid grid-cols-2">
+    <Paper elevation={0}>
+      <div className="grid grid-cols-2 h-80">
         <img src="#" alt="product picture" />
         <div>
           <h3>{title}</h3>
