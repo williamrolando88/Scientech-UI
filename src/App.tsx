@@ -1,10 +1,17 @@
 import React from 'react';
+import { Route, Routes } from 'react-router-dom';
+import Home from './interface/public/pages/Home';
+import Public from './interface/public/Public';
 
 const App = () => {
   return (
-    <div className="text-5xl text-red-500">
-      <span>App</span>
-    </div>
+    <>
+      <Routes>
+        <Route path="/" element={<Public />}>
+          <Route index element={<Home />} />
+        </Route>
+      </Routes>
+    </>
   );
 };
 
