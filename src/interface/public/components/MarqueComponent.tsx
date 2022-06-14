@@ -8,7 +8,7 @@ const MarqueComponent = ({
 }) => {
   return (
     <div className="w-4/5 m-auto">
-      <Marquee speed={50}>
+      <Marquee>
         {React.Children.map(children, (child, i) => (
           <PictureWrapper key={i}>
             {React.cloneElement(child, { children }, null)}
