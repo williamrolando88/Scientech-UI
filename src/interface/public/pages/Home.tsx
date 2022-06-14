@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardMedia } from '@mui/material';
 import WorkCard from '../components/WorkCard';
 import { servicios } from '../../../modules/StaticData';
 import Brands from '../components/Brands';
+import Marquee from 'react-fast-marquee';
 
 const Home = () => {
   return (
@@ -33,8 +34,15 @@ const Home = () => {
         ))}
       </section>
 
-      <section>
-        <MarqueComponent />
+      <section className="py-6">
+        <MarqueComponent>
+          <img src="https://picsum.photos/150/50?random=30" alt="" />
+          <img src="https://picsum.photos/150/80?random=31" alt="" />
+          <img src="https://picsum.photos/100/50?random=32" alt="" />
+          <img src="https://picsum.photos/150/50?random=33" alt="" />
+          <img src="https://picsum.photos/150/50?random=34" alt="" />
+          <img src="https://picsum.photos/150/50?random=35" alt="" />
+        </MarqueComponent>
       </section>
 
       <section className="w-4/5 mx-auto my-10">

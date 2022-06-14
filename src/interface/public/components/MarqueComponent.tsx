@@ -1,21 +1,26 @@
 import React from 'react';
 import Marquee from 'react-fast-marquee';
 
-const MarqueComponent = () => {
+const MarqueComponent = ({
+  children,
+}: {
+  children: JSX.Element | JSX.Element[];
+}) => {
   return (
-    <section className="bg-sky-600">
-      <div className="w-4/5 h-20 flex items-center m-auto">
-        <Marquee speed={50} gradientColor={[2, 132, 199]}>
-          <div className="h-20 w-20 bg-gray-600 ml-40">box 1</div>
-          <div className="h-20 w-20 bg-gray-600 ml-40">box 2</div>
-          <div className="h-20 w-20 bg-gray-600 ml-40">box 3</div>
-          <div className="h-20 w-20 bg-gray-600 ml-40">box 4</div>
-          <div className="h-20 w-20 bg-gray-600 ml-40">box 5</div>
-          <div className="h-20 w-20 bg-gray-600 ml-40">box 6</div>
-        </Marquee>
-      </div>
-    </section>
+    <div className="w-4/5 m-auto">
+      <Marquee speed={50}>
+        {React.Children.map(children, (child, i) => (
+          <PictureWrapper key={i}>
+            {React.cloneElement(child, { children }, null)}
+          </PictureWrapper>
+        ))}
+      </Marquee>
+    </div>
   );
 };
 
 export default MarqueComponent;
+
+const PictureWrapper = ({ children }: { children: JSX.Element }) => {
+  return <div className="mx-4 sm:mx-6 md:mx-10 lg:mx-20">{children}</div>;
+};
