@@ -1,11 +1,8 @@
-import React from 'react';
 import ProductsCarousel from '../components/ProductsCarousel';
 import MarqueComponent from '../components/MarqueComponent';
-import { Card, CardContent, CardHeader, CardMedia } from '@mui/material';
 import WorkCard from '../components/WorkCard';
 import { servicios } from '../../../modules/StaticData';
 import Brands from '../components/Brands';
-import Marquee from 'react-fast-marquee';
 
 const Home = () => {
   return (
