@@ -1,4 +1,5 @@
 import React from 'react';
+import ContactForm from '../components/ContactForm';
 
 const Contact = () => {
   return (
@@ -24,7 +25,9 @@ const Contact = () => {
         Aqui va el mapa
       </section>
 
-      <section>formulario de contacto</section>
+      <section>
+        <ContactForm />
+      </section>
     </>
   );
 };
