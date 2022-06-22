@@ -1,5 +1,7 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
+import Dashboard from './interface/private/Dashboard';
+import Private from './interface/private/Private';
 import Contact from './interface/public/pages/Contact';
 import Home from './interface/public/pages/Home';
 import Public from './interface/public/Public';
@@ -11,6 +13,9 @@ const App = () => {
         <Route path="/" element={<Public />}>
           <Route index element={<Home />} />
           <Route path="contacto" element={<Contact />} />
+        </Route>
+        <Route path="dashboard" element={<Private />}>
+          <Route index element={<Dashboard />} />
         </Route>
       </Routes>
     </>
