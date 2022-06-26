@@ -1,18 +1,15 @@
 import { LoadingButton } from '@mui/lab';
 import LoginIcon from '@mui/icons-material/Login';
-import { IconButton } from '@mui/material';
-import { ArrowBack } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
-  const navigate = useNavigate();
   return (
     <>
       <main className="flex h-screen w-screen items-center justify-center bg-slate-500">
-        <form className="w-4/5 rounded-lg bg-slate-50 p-10 lg:w-[500px]">
+        <form className="flex w-4/5 flex-col gap-6 rounded-lg bg-slate-50 p-10 lg:w-[500px]">
           <h1 className="text-center">Iniciar Sesión</h1>
 
-          <div className="relative mt-6">
+          <div className="relative ">
             <input
               type="email"
               id="email"
@@ -28,7 +25,7 @@ const LoginPage = () => {
             </label>
           </div>
 
-          <div className="relative mt-6">
+          <div className="relative ">
             <input
               type="password"
               id="password"
@@ -49,18 +46,16 @@ const LoginPage = () => {
             </div>
           </div>
 
-          <div className="mt-6">
-            <LoadingButton
-              type="submit"
-              variant="contained"
-              color="success"
-              endIcon={<LoginIcon />}
-              loadingPosition="end"
-              loading={true}
-            >
-              Ingresar
-            </LoadingButton>
-          </div>
+          <LoadingButton
+            type="submit"
+            variant="contained"
+            color="success"
+            endIcon={<LoginIcon />}
+            loadingPosition="end"
+            loading={true}
+          >
+            Ingresar
+          </LoadingButton>
         </form>
       </main>
     </>
