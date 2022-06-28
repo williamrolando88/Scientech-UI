@@ -1,7 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { scientechApi } from './services/scientech';
 import userReducer from './reducers/user';
-import logger from 'redux-logger';
 
 const reducer = {
   user: userReducer,
@@ -10,7 +9,7 @@ const reducer = {
 
 const store = configureStore({
   reducer,
-  middleware: (gDM) => gDM().concat(logger).concat(scientechApi.middleware),
+  middleware: (gDM) => gDM().concat(scientechApi.middleware),
   devTools: process.env.NODE_ENV !== 'production' ? true : false,
 });
 

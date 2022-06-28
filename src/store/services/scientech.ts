@@ -6,7 +6,7 @@ export const scientechApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl:
       process.env.NODE_ENV === 'development'
-        ? 'http://localhost:3000/'
+        ? 'http://localhost:5500/'
         : 'https://scientech-backend.herokuapp.com/',
   }),
   endpoints: (builder) => ({

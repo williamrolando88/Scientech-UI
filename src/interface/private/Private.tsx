@@ -1,5 +1,4 @@
-import jwtDecode from 'jwt-decode';
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { notExpiredToken, userInfo } from '../../modules/tokenValidation';
