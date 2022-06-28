@@ -2,8 +2,18 @@ import { LoadingButton } from '@mui/lab';
 import LoginIcon from '@mui/icons-material/Login';
 import { useState } from 'react';
 
+const initialLoginData = {
+  email: '',
+  password: '',
+};
+
 const LoginPage = () => {
   const [visiblePassword, setVisiblePassword] = useState(false);
+  const [loginData, setLoginData] = useState(initialLoginData);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    setLoginData({ ...loginData, [e.target.name]: e.target.value });
+  };
 
   return (
     <main className="flex h-screen w-screen items-center justify-center bg-slate-500">
@@ -14,7 +24,9 @@ const LoginPage = () => {
           <input
             type="email"
             id="email"
-            name="login[email]"
+            name="email"
+            value={loginData.email}
+            onChange={handleChange}
             className="peer w-full border-b-2 py-2 placeholder-transparent focus:border-sky-600 focus:outline-none"
             placeholder="Correo electrónico"
             autoComplete="email"
@@ -31,7 +43,9 @@ const LoginPage = () => {
           <input
             type={visiblePassword ? 'text' : 'password'}
             id="password"
-            name="login[password]"
+            name="password"
+            value={loginData.password}
+            onChange={handleChange}
             className="peer w-full border-b-2 py-2 placeholder-transparent focus:border-sky-600 focus:outline-none"
             placeholder="Contraseña"
             autoComplete="current-password"
@@ -60,7 +74,7 @@ const LoginPage = () => {
           color="success"
           endIcon={<LoginIcon />}
           loadingPosition="end"
-          loading={true}
+          loading={false}
         >
           Ingresar
         </LoadingButton>
