@@ -10,7 +10,7 @@ const initialLoginData = {
 };
 
 const LoginPage = () => {
-  const token = localStorage.getItem('UserID');
+  const token = sessionStorage.getItem('UserID');
   const navigate = useNavigate();
 
   const [loginTrigger, loginResult] = useLoginMutation();
@@ -32,7 +32,7 @@ const LoginPage = () => {
 
   useEffect(() => {
     if (loginResult.isSuccess) {
-      localStorage.setItem('UserID', loginResult.data.token);
+      sessionStorage.setItem('UserID', loginResult.data.token);
       navigate('../dashboard', { replace: true });
     }
   }, [loginResult]);
