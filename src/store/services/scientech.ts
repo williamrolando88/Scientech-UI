@@ -4,7 +4,10 @@ import { LoginInfo, Token } from './scientech';
 export const scientechApi = createApi({
   reducerPath: 'scientechApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://scientech-backend.herokuapp.com/',
+    baseUrl:
+      process.env.NODE_ENV === 'development'
+        ? 'http://localhost:3000/'
+        : 'https://scientech-backend.herokuapp.com/',
   }),
   endpoints: (builder) => ({
     login: builder.mutation<Token, LoginInfo>({
