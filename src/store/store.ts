@@ -1,7 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { scientechApi } from './services/scientech';
+import userReducer from './reducers/user';
 
 const reducer = {
+  userReducer,
   [scientechApi.reducerPath]: scientechApi.reducer,
 };
 
