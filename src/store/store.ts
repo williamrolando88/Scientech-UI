@@ -4,7 +4,7 @@ import userReducer from './reducers/user';
 import logger from 'redux-logger';
 
 const reducer = {
-  userReducer,
+  user: userReducer,
   [scientechApi.reducerPath]: scientechApi.reducer,
 };
 
