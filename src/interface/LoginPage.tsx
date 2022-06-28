@@ -13,7 +13,8 @@ const LoginPage = () => {
   const token = sessionStorage.getItem('UserID');
   const navigate = useNavigate();
 
-  const [loginTrigger, loginResult] = useLoginMutation();
+  const [loginTrigger, { isSuccess, isLoading, isError, error, data }] =
+    useLoginMutation();
   const [visiblePassword, setVisiblePassword] = useState(false);
   const [loginData, setLoginData] = useState(initialLoginData);
 
@@ -31,11 +32,11 @@ const LoginPage = () => {
   }, []);
 
   useEffect(() => {
-    if (loginResult.isSuccess) {
-      sessionStorage.setItem('UserID', loginResult.data.token);
+    if (isSuccess) {
+      sessionStorage.setItem('UserID', data.token);
       navigate('../dashboard', { replace: true });
     }
-  }, [loginResult]);
+  }, [isSuccess]);
 
   return (
     <main className="flex h-screen w-screen items-center justify-center bg-slate-500">
@@ -93,9 +94,9 @@ const LoginPage = () => {
           </div>
         </div>
 
-        {loginResult.isError && (
+        {isError && (
           <div className=" -mb-6 rounded-t-lg bg-red-300 py-1 text-center text-red-800 transition-all">
-            {loginResult.error.data.error}
+            {error?.data.error}
           </div>
         )}
 
@@ -105,7 +106,7 @@ const LoginPage = () => {
           color="success"
           endIcon={<LoginIcon />}
           loadingPosition="end"
-          loading={loginResult.isLoading}
+          loading={isLoading}
         >
           Ingresar
         </LoadingButton>
