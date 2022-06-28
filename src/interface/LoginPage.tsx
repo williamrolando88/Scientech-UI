@@ -1,6 +1,8 @@
 import { LoadingButton } from '@mui/lab';
 import LoginIcon from '@mui/icons-material/Login';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useLoginMutation } from '../store/services/scientech';
+import { useNavigate } from 'react-router-dom';
 
 const initialLoginData = {
   email: '',
@@ -8,6 +10,8 @@ const initialLoginData = {
 };
 
 const LoginPage = () => {
+  const navigate = useNavigate();
+  const [loginTrigger, loginResult] = useLoginMutation();
   const [visiblePassword, setVisiblePassword] = useState(false);
   const [loginData, setLoginData] = useState(initialLoginData);
 
@@ -15,9 +19,23 @@ const LoginPage = () => {
     setLoginData({ ...loginData, [e.target.name]: e.target.value });
   };
 
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    loginTrigger(loginData);
+  };
+
+  useEffect(() => {
+    if (loginResult.isSuccess) {
+      localStorage.setItem('UserID', loginResult.data.token);
+    }
+  }, [loginResult]);
+
   return (
     <main className="flex h-screen w-screen items-center justify-center bg-slate-500">
-      <form className="flex w-4/5 flex-col gap-6 rounded-lg bg-slate-50 p-10 lg:w-[500px]">
+      <form
+        onSubmit={handleSubmit}
+        className="flex w-4/5 flex-col gap-6 rounded-lg bg-slate-50 p-10 lg:w-[500px]"
+      >
         <h1 className="text-center">Iniciar Sesión</h1>
 
         <div className="relative ">
@@ -68,13 +86,19 @@ const LoginPage = () => {
           </div>
         </div>
 
+        {loginResult.isError && (
+          <div className=" -mb-6 rounded-t-lg bg-red-300 py-1 text-center text-red-800 transition-all">
+            {loginResult.error.data.error}
+          </div>
+        )}
+
         <LoadingButton
           type="submit"
           variant="contained"
           color="success"
           endIcon={<LoginIcon />}
           loadingPosition="end"
-          loading={false}
+          loading={loginResult.isLoading}
         >
           Ingresar
         </LoadingButton>
