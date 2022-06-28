@@ -13,7 +13,7 @@ const LoginPage = () => {
   const token = sessionStorage.getItem('UserID');
   const navigate = useNavigate();
 
-  const [loginTrigger, { isSuccess, isLoading, isError, error, data }] =
+  const [loginTrigger, { isSuccess, isLoading, isError, data }] =
     useLoginMutation();
   const [visiblePassword, setVisiblePassword] = useState(false);
   const [loginData, setLoginData] = useState(initialLoginData);
@@ -95,8 +95,8 @@ const LoginPage = () => {
         </div>
 
         {isError && (
-          <div className=" -mb-6 rounded-t-lg bg-red-300 py-1 text-center text-red-800 transition-all">
-            {error?.data.error}
+          <div className=" -mb-6 rounded-t-lg bg-red-300 py-1 text-center text-sm text-red-800 transition-all md:text-base">
+            Correo o contraseña incorrectos
           </div>
         )}
 
