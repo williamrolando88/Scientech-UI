@@ -10,7 +10,9 @@ const initialLoginData = {
 };
 
 const LoginPage = () => {
+  const token = localStorage.getItem('UserID');
   const navigate = useNavigate();
+
   const [loginTrigger, loginResult] = useLoginMutation();
   const [visiblePassword, setVisiblePassword] = useState(false);
   const [loginData, setLoginData] = useState(initialLoginData);
@@ -23,6 +25,10 @@ const LoginPage = () => {
     e.preventDefault();
     loginTrigger(loginData);
   };
+
+  useEffect(() => {
+    if (token) navigate('../dashboard', { replace: true });
+  }, []);
 
   useEffect(() => {
     if (loginResult.isSuccess) {
