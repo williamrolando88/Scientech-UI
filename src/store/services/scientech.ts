@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { UserInfo } from './scientechInterface';
+import { LoginInfo, Token } from './scientech';
 
 export const scientechApi = createApi({
   reducerPath: 'scientechApi',
@@ -7,8 +7,8 @@ export const scientechApi = createApi({
     baseUrl: 'https://scientech-backend.herokuapp.com/',
   }),
   endpoints: (builder) => ({
-    login: builder.mutation({
-      query: (userInfo: UserInfo) => ({
+    login: builder.mutation<Token, LoginInfo>({
+      query: (userInfo) => ({
         url: 'login',
         method: 'POST',
         body: userInfo,
