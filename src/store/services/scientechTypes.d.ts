@@ -1,8 +1,8 @@
-export interface LoginInfo {
+export type LoginInfo = {
   email: string;
   password: string;
-}
+};
 
-export interface Token {
+export type Token = {
   token: string;
-}
+};
