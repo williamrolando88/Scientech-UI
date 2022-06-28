@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { LoginInfo, Token } from './scientech';
+import { LoginInfo, Token } from './scientechTypes';
 
 export const scientechApi = createApi({
   reducerPath: 'scientechApi',
