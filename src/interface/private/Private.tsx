@@ -1,16 +1,20 @@
 import jwtDecode from 'jwt-decode';
 import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { Outlet, useNavigate } from 'react-router-dom';
-import { notExpiredToken } from '../../modules/tokenValidation';
+import { notExpiredToken, userInfo } from '../../modules/tokenValidation';
+import { setUser } from '../../store/reducers/user';
 
 const Private = () => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const token = sessionStorage.getItem('UserID');
 
     if (token && notExpiredToken(token)) {
-      console.log('valid token');
+      const userData = userInfo(token);
+      dispatch(setUser(userData));
     } else navigate('../login', { replace: true });
   }, []);
 
