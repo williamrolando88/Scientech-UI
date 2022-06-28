@@ -27,6 +27,7 @@ const LoginPage = () => {
   useEffect(() => {
     if (loginResult.isSuccess) {
       localStorage.setItem('UserID', loginResult.data.token);
+      navigate('../dashboard', { replace: true });
     }
   }, [loginResult]);
 
