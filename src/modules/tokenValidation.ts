@@ -6,7 +6,7 @@ interface DecodedToken {
   exp: number;
 }
 
-export const isFreshToken = (token: string): boolean => {
+export const notExpiredToken = (token: string): boolean => {
   const { exp } = jwtDecode(token) as DecodedToken;
   const now = new Date().getTime();
   if (exp * 1000 > now) return true;
