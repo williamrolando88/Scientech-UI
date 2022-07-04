@@ -34,27 +34,27 @@ const Home = () => {
       <section className="py-6">
         <MarqueComponent>
           <img
-            src="./src/pictures/logosClientes/arca_continental_logo.png"
+            src="./pictures/logosClientes/arca_continental_logo.png"
             alt="Logo-Arca-Continental"
             className="w-40"
           />
           <img
-            src="./src/pictures/logosClientes/motor1_logo.png"
+            src="./pictures/logosClientes/motor1_logo.png"
             alt="Logo-Motor1"
             className="w-40"
           />
           <img
-            src="./src/pictures/logosClientes/novacero_logo.png"
+            src="./pictures/logosClientes/novacero_logo.png"
             alt="Logo-Novacero"
             className="w-40"
           />
           <img
-            src="./src/pictures/logosClientes/santa_maria_logo.png"
+            src="./pictures/logosClientes/santa_maria_logo.png"
             alt="Logo-Santa-Maria"
             className="w-40"
           />
           <img
-            src="./src/pictures/logosClientes/thoughtworks_logo.png"
+            src="./pictures/logosClientes/thoughtworks_logo.png"
             alt="Logo-ThoughtWorks"
             className="w-40"
           />
