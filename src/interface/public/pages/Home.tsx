@@ -1,6 +1,7 @@
 import ProductsCarousel from '../components/ProductsCarousel';
 import MarqueComponent from '../components/MarqueComponent';
 import WorkCard from '../components/WorkCard';
+import { carouselData } from '../../../modules/carouselData';
 import { servicios } from '../../../modules/StaticData';
 import Brands from '../components/Brands';
 
@@ -8,7 +9,7 @@ const Home = () => {
   return (
     <>
       <section className="my-10 px-[0%]">
-        <ProductsCarousel />
+        <ProductsCarousel carouselData={carouselData} />
       </section>
 
       <section className="mx-auto my-10 w-4/5">
