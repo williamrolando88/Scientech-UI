@@ -7,11 +7,11 @@ import Brands from '../components/Brands';
 const Home = () => {
   return (
     <>
-      <section className="px-[0%] my-10">
+      <section className="my-10 px-[0%]">
         <ProductsCarousel />
       </section>
 
-      <section className="w-4/5 mx-auto my-10">
+      <section className="mx-auto my-10 w-4/5">
         <h2>Scientech</h2>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro
@@ -25,7 +25,7 @@ const Home = () => {
         </p>
       </section>
 
-      <section className="grid grid-cols-1 md:grid-cols-3 gap-6 justify-between my-10 w-4/5 m-auto">
+      <section className="m-auto my-10 grid w-4/5 grid-cols-1 justify-between gap-6 md:grid-cols-3">
         {servicios.map((service, i) => (
           <WorkCard content={service} key={i} />
         ))}
@@ -33,16 +33,35 @@ const Home = () => {
 
       <section className="py-6">
         <MarqueComponent>
-          <img src="https://picsum.photos/150/50?random=30" alt="" />
-          <img src="https://picsum.photos/150/80?random=31" alt="" />
-          <img src="https://picsum.photos/100/50?random=32" alt="" />
-          <img src="https://picsum.photos/150/50?random=33" alt="" />
-          <img src="https://picsum.photos/150/50?random=34" alt="" />
-          <img src="https://picsum.photos/150/50?random=35" alt="" />
+          <img
+            src="./src/pictures/logosClientes/arca_continental_logo.png"
+            alt="Logo-Arca-Continental"
+            className="w-40"
+          />
+          <img
+            src="./src/pictures/logosClientes/motor1_logo.png"
+            alt="Logo-Motor1"
+            className="w-40"
+          />
+          <img
+            src="./src/pictures/logosClientes/novacero_logo.png"
+            alt="Logo-Novacero"
+            className="w-40"
+          />
+          <img
+            src="./src/pictures/logosClientes/santa_maria_logo.png"
+            alt="Logo-Santa-Maria"
+            className="w-40"
+          />
+          <img
+            src="./src/pictures/logosClientes/thoughtworks_logo.png"
+            alt="Logo-ThoughtWorks"
+            className="w-40"
+          />
         </MarqueComponent>
       </section>
 
-      <section className="w-4/5 mx-auto my-10">
+      <section className="mx-auto my-10 w-4/5">
         <Brands title="Estas son las marcas con las que trabajamos">
           <img src="https://picsum.photos/150/50?random=20" alt="" />
           <img src="https://picsum.photos/120/70?random=21" alt="" />
