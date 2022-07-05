@@ -1,12 +1,11 @@
 import { Fragment } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline';
+import { NavLink } from 'react-router-dom';
 
 const navigation = [
-  { name: 'Inicio', href: '/', current: true },
-  { name: 'Contacto', href: '/contacto', current: false },
-  { name: 'Projects', href: '#', current: false },
-  { name: 'Dashboard', href: '/dashboard', current: false },
+  { name: 'Inicio', to: '/' },
+  { name: 'Contacto', to: '/contacto' },
 ];
 
 function classNames(...classes: string[]) {
@@ -15,7 +14,7 @@ function classNames(...classes: string[]) {
 
 const Navbar = () => {
   return (
-    <Disclosure as="nav" className="bg-gray-800">
+    <Disclosure as="nav" className="bg-sky-600">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -35,31 +34,45 @@ const Navbar = () => {
                 <div className="flex flex-shrink-0 items-center">
                   <img
                     className="block h-8 w-auto lg:hidden"
-                    src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
+                    src="./pictures/scientechLogos/favicon.svg"
                     alt="Workflow"
                   />
                   <img
                     className="hidden h-8 w-auto lg:block"
-                    src="https://tailwindui.com/img/logos/workflow-logo-indigo-500-mark-white-text.svg"
+                    src="./pictures/scientechLogos/scientechWhite.png"
                     alt="Workflow"
                   />
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
-                    {navigation.map((item) => (
-                      <a
-                        key={item.name}
-                        href={item.href}
-                        className={classNames(
+                    {/*  classNames(
                           item.current
                             ? 'bg-gray-900 text-white'
                             : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                           'rounded-md px-3 py-2 text-sm font-medium'
-                        )}
-                        aria-current={item.current ? 'page' : undefined}
+
+                          
+                        // aria-current={item.current ? 'page' : undefined}
+
+
+                        ) */}
+                    {navigation.map((item) => (
+                      <NavLink
+                        key={item.name}
+                        to={item.to}
+                        className={({
+                          isActive,
+                        }: {
+                          isActive: boolean;
+                        }): string =>
+                          (isActive
+                            ? 'bg-sky-900 text-white'
+                            : 'text-gray-300 hover:bg-sky-700 hover:text-white') +
+                          ' rounded-md px-3 py-2 text-sm font-medium'
+                        }
                       >
                         {item.name}
-                      </a>
+                      </NavLink>
                     ))}
                   </div>
                 </div>
