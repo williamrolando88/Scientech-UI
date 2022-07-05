@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { notExpiredToken, userInfo } from '../../modules/tokenValidation';
 import { setUser } from '../../store/reducers/user';
+import PrivateNavbar from './components/PrivateNavbar';
 
 const Private = () => {
   const navigate = useNavigate();
@@ -19,6 +20,7 @@ const Private = () => {
 
   return (
     <>
+      <PrivateNavbar />
       <Outlet />
     </>
   );
