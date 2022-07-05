@@ -8,10 +8,6 @@ const navigation = [
   { name: 'Contacto', to: '/contacto' },
 ];
 
-function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(' ');
-}
-
 const Navbar = () => {
   return (
     <Disclosure as="nav" className="bg-sky-600">
