@@ -7,7 +7,7 @@ const MarqueComponent = ({
   children: JSX.Element | JSX.Element[];
 }) => {
   return (
-    <div className="w-4/5 m-auto">
+    <div className="m-auto w-full md:w-4/5">
       <Marquee>
         {React.Children.map(children, (child, i) => (
           <PictureWrapper key={i}>

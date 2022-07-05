@@ -1,18 +1,20 @@
 import ProductsCarousel from '../components/ProductsCarousel';
 import MarqueComponent from '../components/MarqueComponent';
 import WorkCard from '../components/WorkCard';
+import { carouselData } from '../../../modules/carouselData';
 import { servicios } from '../../../modules/StaticData';
 import Brands from '../components/Brands';
+import { brandsUrl, getBrandLogoUrl } from '../../../modules/brandsLogos';
 
 const Home = () => {
   return (
     <>
-      <section className="px-[0%] my-10">
-        <ProductsCarousel />
+      <section className="my-10 px-[0%]">
+        <ProductsCarousel carouselData={carouselData} />
       </section>
 
-      <section className="w-4/5 mx-auto my-10">
-        <h2>Scientech</h2>
+      <section className="mx-auto my-10 w-4/5">
+        <h1>Scientech</h1>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro
           tenetur cum dolorum aut, exercitationem placeat itaque dignissimos
@@ -25,7 +27,7 @@ const Home = () => {
         </p>
       </section>
 
-      <section className="grid grid-cols-1 md:grid-cols-3 gap-6 justify-between my-10 w-4/5 m-auto">
+      <section className="m-auto my-10 grid w-4/5 grid-cols-1 justify-between gap-6 md:grid-cols-3">
         {servicios.map((service, i) => (
           <WorkCard content={service} key={i} />
         ))}
@@ -33,23 +35,44 @@ const Home = () => {
 
       <section className="py-6">
         <MarqueComponent>
-          <img src="https://picsum.photos/150/50?random=30" alt="" />
-          <img src="https://picsum.photos/150/80?random=31" alt="" />
-          <img src="https://picsum.photos/100/50?random=32" alt="" />
-          <img src="https://picsum.photos/150/50?random=33" alt="" />
-          <img src="https://picsum.photos/150/50?random=34" alt="" />
-          <img src="https://picsum.photos/150/50?random=35" alt="" />
+          <img
+            src="./pictures/logosClientes/arca_continental_logo.png"
+            alt="Logo-Arca-Continental"
+            className="w-40"
+          />
+          <img
+            src="./pictures/logosClientes/motor1_logo.png"
+            alt="Logo-Motor1"
+            className="w-40"
+          />
+          <img
+            src="./pictures/logosClientes/novacero_logo.png"
+            alt="Logo-Novacero"
+            className="w-40"
+          />
+          <img
+            src="./pictures/logosClientes/santa_maria_logo.png"
+            alt="Logo-Santa-Maria"
+            className="w-40"
+          />
+          <img
+            src="./pictures/logosClientes/thoughtworks_logo.png"
+            alt="Logo-ThoughtWorks"
+            className="w-40"
+          />
         </MarqueComponent>
       </section>
 
-      <section className="w-4/5 mx-auto my-10">
+      <section className="mx-auto my-10 w-4/5">
         <Brands title="Estas son las marcas con las que trabajamos">
-          <img src="https://picsum.photos/150/50?random=20" alt="" />
-          <img src="https://picsum.photos/120/70?random=21" alt="" />
-          <img src="https://picsum.photos/100/80?random=22" alt="" />
-          <img src="https://picsum.photos/150/100?random=23" alt="" />
-          <img src="https://picsum.photos/150/150?random=24" alt="" />
-          <img src="https://picsum.photos/100/100?random=25" alt="" />
+          {brandsUrl.map((url, i) => (
+            <img
+              className="h-20"
+              src={getBrandLogoUrl(url)}
+              alt="logo"
+              key={i}
+            />
+          ))}
         </Brands>
       </section>
     </>

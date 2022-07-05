@@ -1,37 +1,54 @@
-export const carouselData = [
+export type CarouselObject = {
+  title: string;
+  description: string;
+  target?: string;
+  picture: string;
+};
+
+const setPictureUrl = (pictureName: string): string =>
+  `./pictures/carousel/${pictureName}`;
+
+export const carouselData: CarouselObject[] = [
   {
-    title: 'Product 1',
+    title: 'Cositas HEDLAND',
     description:
       'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolores est nostrum repudiandae. Cum ullam magni quod nihil, aperiam eaque labore, laudantium, omnis eveniet dolor voluptatem. Veritatis quidem velit impedit obcaecati?',
-    target: 'product1',
-    picture: 'https://picsum.photos/300/200?random=1',
+    picture: setPictureUrl('hedland.jpg'),
   },
   {
-    title: 'Product 2',
+    title: 'Juguetes ABP',
     description:
       'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolores est nostrum repudiandae. Cum ullam magni quod nihil, aperiam eaque labore, laudantium, omnis eveniet dolor voluptatem. Veritatis quidem velit impedit obcaecati?',
-    target: 'product2',
-    picture: 'https://picsum.photos/300/200?random=2',
+    picture: setPictureUrl('abp.jpg'),
   },
   {
-    title: 'Product 3',
+    title: 'Juguetes ROTEX',
     description:
       'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolores est nostrum repudiandae. Cum ullam magni quod nihil, aperiam eaque labore, laudantium, omnis eveniet dolor voluptatem. Veritatis quidem velit impedit obcaecati?',
-    target: 'product3',
-    picture: 'https://picsum.photos/300/200?random=3',
+    picture: setPictureUrl('rotex.jpg'),
   },
   {
-    title: 'Product 4',
+    title: 'Juguetes Pepper',
     description:
       'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolores est nostrum repudiandae. Cum ullam magni quod nihil, aperiam eaque labore, laudantium, omnis eveniet dolor voluptatem. Veritatis quidem velit impedit obcaecati?',
-    target: 'product4',
-    picture: 'https://picsum.photos/300/200?random=4',
+    picture: setPictureUrl('pepper.jpg'),
   },
   {
-    title: 'Product 5',
+    title: 'Juguetes ROSS',
     description:
       'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolores est nostrum repudiandae. Cum ullam magni quod nihil, aperiam eaque labore, laudantium, omnis eveniet dolor voluptatem. Veritatis quidem velit impedit obcaecati?',
-    target: 'product5',
-    picture: 'https://picsum.photos/300/200?random=5',
+    picture: setPictureUrl('ross.jpg'),
+  },
+  {
+    title: 'Juguetes SCHNEIDER',
+    description:
+      'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolores est nostrum repudiandae. Cum ullam magni quod nihil, aperiam eaque labore, laudantium, omnis eveniet dolor voluptatem. Veritatis quidem velit impedit obcaecati?',
+    picture: setPictureUrl('schneider.jpg'),
+  },
+  {
+    title: 'Juguetes Siemens',
+    description:
+      'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolores est nostrum repudiandae. Cum ullam magni quod nihil, aperiam eaque labore, laudantium, omnis eveniet dolor voluptatem. Veritatis quidem velit impedit obcaecati?',
+    picture: setPictureUrl('siemens.jpg'),
   },
 ];

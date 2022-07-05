@@ -1,12 +1,18 @@
 import { Phone, PhoneIphone } from '@mui/icons-material';
 import { Paper } from '@mui/material';
-import React from 'react';
+import { useEffect } from 'react';
 import ContactForm from '../components/ContactForm';
 
 const Contact = () => {
+  useEffect(() => {
+    document.title = 'Scientech - Contacto';
+  }, []);
+
   return (
     <>
-      <section className="mt-6 flex h-60 bg-[url('./pictures/bg-contact.jpg')] bg-cover bg-center bg-no-repeat md:h-72"></section>
+      <section
+        className={`mt-6 flex h-60 bg-[url('./assets/img/bg-contact.jpg')] bg-cover bg-center bg-no-repeat md:h-72`}
+      ></section>
 
       <section className="mx-auto my-10 w-4/5">
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
@@ -16,7 +22,7 @@ const Contact = () => {
           >
             <img
               className="h-32"
-              src="./icons/Contacto.png"
+              src="./pictures/icons/Contacto.png"
               alt="contacto-logo"
             />
             <h5 className="font-bold">Llámanos a nuestros teléfonos:</h5>
@@ -47,7 +53,7 @@ const Contact = () => {
           >
             <img
               className="h-32"
-              src="./icons/Horario.png"
+              src="./pictures/icons/Horario.png"
               alt="horario-logo"
             />
             <h5 className="font-bold">Nuestro horario de atención:</h5>
@@ -62,7 +68,7 @@ const Contact = () => {
           >
             <img
               className="h-32"
-              src="./icons/Ubicacion.png"
+              src="./pictures/icons/Ubicacion.png"
               alt="ubicacion-logo"
             />
             <h5 className="font-bold">Nuestra dirección:</h5>

@@ -3,6 +3,7 @@ import LoginIcon from '@mui/icons-material/Login';
 import { useEffect, useState } from 'react';
 import { useLoginMutation } from '../store/services/scientech';
 import { useNavigate } from 'react-router-dom';
+import { type } from 'os';
 
 const initialLoginData = {
   email: '',
@@ -33,7 +34,7 @@ const LoginPage = () => {
 
   useEffect(() => {
     if (isSuccess) {
-      sessionStorage.setItem('UserID', data.token);
+      sessionStorage.setItem('UserID', JSON.stringify(data?.token));
       navigate('../dashboard', { replace: true });
     }
   }, [isSuccess]);
