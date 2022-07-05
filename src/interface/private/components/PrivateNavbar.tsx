@@ -1,6 +1,5 @@
 import { Fragment } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
-import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline';
 
 const profileMenu = [
   { name: 'Mi perfil', to: '#' },
@@ -9,32 +8,17 @@ const profileMenu = [
 
 const PrivateNavbar = () => {
   return (
-    <Disclosure as="nav" className="bg-gray-800">
+    <Disclosure as="nav" className="bg-sky-600">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
             <div className="relative flex h-16 items-center justify-between">
-              <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
-                {/* Mobile menu button*/}
-                <Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
-                  <span className="sr-only">Open main menu</span>
-                  {open ? (
-                    <XIcon className="block h-6 w-6" aria-hidden="true" />
-                  ) : (
-                    <MenuIcon className="block h-6 w-6" aria-hidden="true" />
-                  )}
-                </Disclosure.Button>
-              </div>
+              <div className="absolute inset-y-0 left-0 flex items-center sm:hidden"></div>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex flex-shrink-0 items-center">
                   <img
-                    className="block h-8 w-auto lg:hidden"
-                    src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
-                    alt="Workflow"
-                  />
-                  <img
-                    className="hidden h-8 w-auto lg:block"
-                    src="https://tailwindui.com/img/logos/workflow-logo-indigo-500-mark-white-text.svg"
+                    className="h-6 w-auto md:h-8"
+                    src="./pictures/scientechLogos/scientechWhite.png"
                     alt="Workflow"
                   />
                 </div>
@@ -67,7 +51,7 @@ const PrivateNavbar = () => {
                           <a
                             href={item.to}
                             className={
-                              'block bg-gray-100 px-4 py-2 text-sm text-gray-700'
+                              'block bg-gray-100 px-4 py-2 text-sm text-gray-700 hover:bg-gray-200'
                             }
                           >
                             {item.name}
