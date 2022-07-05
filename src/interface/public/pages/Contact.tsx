@@ -1,16 +1,13 @@
 import { Phone, PhoneIphone } from '@mui/icons-material';
 import { Paper } from '@mui/material';
+import { useEffect } from 'react';
 import ContactForm from '../components/ContactForm';
 
-// const imgUrl = new URL('./src/pictures/bg-contact.jpg', import.meta.url).href;
-
-/*
-const imgUrl = new URL('./img.png', import.meta.url).href
-
-document.getElementById('hero-img').src = imgUrl
-*/
-
 const Contact = () => {
+  useEffect(() => {
+    document.title = 'Scientech - Contacto';
+  }, []);
+
   return (
     <>
       <section
