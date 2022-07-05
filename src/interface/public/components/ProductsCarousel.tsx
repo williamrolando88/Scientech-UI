@@ -1,4 +1,3 @@
-import React from 'react';
 import Carousel from 'react-material-ui-carousel';
 import { Paper, Button } from '@mui/material';
 import { Link } from 'react-router-dom';
@@ -26,8 +25,12 @@ const Slide = ({
 }) => {
   return (
     <Paper elevation={0}>
-      <div className="grid h-80 grid-cols-2 content-center">
-        <img className="m-auto" src={picture} alt="product picture" />
+      <div className="grid grid-cols-2 content-center">
+        <img
+          className="m-auto h-80"
+          src={picture}
+          alt={title.toLowerCase().split(' ').join('-').concat('-picture')}
+        />
         <div>
           <h3>{title}</h3>
           <p>{description}</p>

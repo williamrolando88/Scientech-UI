@@ -13,7 +13,7 @@ const Home = () => {
       </section>
 
       <section className="mx-auto my-10 w-4/5">
-        <h2>Scientech</h2>
+        <h1>Scientech</h1>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro
           tenetur cum dolorum aut, exercitationem placeat itaque dignissimos
