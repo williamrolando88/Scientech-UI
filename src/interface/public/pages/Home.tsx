@@ -4,6 +4,7 @@ import WorkCard from '../components/WorkCard';
 import { carouselData } from '../../../modules/carouselData';
 import { servicios } from '../../../modules/StaticData';
 import Brands from '../components/Brands';
+import { brandsUrl, getBrandLogoUrl } from '../../../modules/brandsLogos';
 
 const Home = () => {
   return (
@@ -64,12 +65,14 @@ const Home = () => {
 
       <section className="mx-auto my-10 w-4/5">
         <Brands title="Estas son las marcas con las que trabajamos">
-          <img src="https://picsum.photos/150/50?random=20" alt="" />
-          <img src="https://picsum.photos/120/70?random=21" alt="" />
-          <img src="https://picsum.photos/100/80?random=22" alt="" />
-          <img src="https://picsum.photos/150/100?random=23" alt="" />
-          <img src="https://picsum.photos/150/150?random=24" alt="" />
-          <img src="https://picsum.photos/100/100?random=25" alt="" />
+          {brandsUrl.map((url, i) => (
+            <img
+              className="h-20"
+              src={getBrandLogoUrl(url)}
+              alt="logo"
+              key={i}
+            />
+          ))}
         </Brands>
       </section>
     </>
