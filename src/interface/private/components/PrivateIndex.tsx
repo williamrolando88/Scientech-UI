@@ -1,5 +1,5 @@
 const PrivateIndex = () => {
-  return <div>PrivateIndex</div>;
+  return <div>Hola, bienvenido</div>;
 };
 
 export default PrivateIndex;
