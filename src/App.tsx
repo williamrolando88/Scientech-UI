@@ -7,6 +7,7 @@ import Contact from './interface/public/pages/Contact';
 import Home from './interface/public/pages/Home';
 import Public from './interface/public/Public';
 import ImportCalculator from './interface/private/apps/ImportCalculator';
+import InvoiceReader from './interface/private/apps/InvoiceReader';
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
         <Route path="dashboard" element={<Private />}>
           <Route index element={<PrivateIndex />} />
           <Route path="calculadora" element={<ImportCalculator />} />
+          <Route path="facturas" element={<InvoiceReader />} />
         </Route>
       </Routes>
     </>
