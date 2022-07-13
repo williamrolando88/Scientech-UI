@@ -13,10 +13,11 @@ import { useDispatch } from 'react-redux';
 import { setUser } from './store/reducers/user';
 
 const App = () => {
+  const dispatch = useDispatch();
+
   const session = new Token();
   const loggedStatus = session.isValid();
   const userInfo = session.loadToken();
-  const dispatch = useDispatch();
   dispatch(setUser(userInfo));
 
   return (
