@@ -1,6 +1,6 @@
 import { LoadingButton } from '@mui/lab';
 import LoginIcon from '@mui/icons-material/Login';
-import { useEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 import { useLoginMutation } from '../store/services/scientech';
 import { useNavigate } from 'react-router-dom';
 import Token from '../modules/tokenClass';
@@ -12,11 +12,7 @@ const initialLoginData = {
   password: '',
 };
 
-interface LoginProps {
-  isLogged: boolean;
-}
-
-const LoginPage = ({ isLogged }: LoginProps) => {
+const LoginPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -34,8 +30,13 @@ const LoginPage = ({ isLogged }: LoginProps) => {
     loginTrigger(loginData);
   };
 
-  useEffect(() => {
-    if (isLogged) navigate('../dashboard', { replace: true });
+  useLayoutEffect(() => {
+    const session = new Token();
+    const loggedStatus = session.isValid();
+    const userInfo = session.loadToken();
+
+    dispatch(setUser(userInfo));
+    if (loggedStatus) navigate('../dashboard', { replace: true });
   }, []);
 
   useEffect(() => {
