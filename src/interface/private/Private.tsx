@@ -1,25 +1,28 @@
-import { useEffect } from 'react';
+import { useLayoutEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { Outlet, useNavigate } from 'react-router-dom';
-import { notExpiredToken, userInfo } from '../../modules/tokenValidation';
+import { useNavigate } from 'react-router-dom';
+import Token from '../../modules/tokenClass';
 import { setUser } from '../../store/reducers/user';
+import PrivateNavbar from './components/PrivateNavbar';
+import Dashboard from './Dashboard';
 
 const Private = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    const token = sessionStorage.getItem('UserID');
+  useLayoutEffect(() => {
+    const session = new Token();
+    const loggedStatus = session.isValid();
+    const userInfo = session.loadToken();
 
-    if (token && notExpiredToken(token)) {
-      const userData = userInfo(token);
-      dispatch(setUser(userData));
-    } else navigate('../login', { replace: true });
+    dispatch(setUser(userInfo));
+    if (!loggedStatus) navigate('../login', { replace: true });
   }, []);
 
   return (
     <>
-      <Outlet />
+      <PrivateNavbar />
+      <Dashboard />
     </>
   );
 };

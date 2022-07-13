@@ -1,9 +1,11 @@
 import { LoadingButton } from '@mui/lab';
 import LoginIcon from '@mui/icons-material/Login';
-import { useEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 import { useLoginMutation } from '../store/services/scientech';
 import { useNavigate } from 'react-router-dom';
-import { type } from 'os';
+import Token from '../modules/tokenClass';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../store/reducers/user';
 
 const initialLoginData = {
   email: '',
@@ -11,8 +13,8 @@ const initialLoginData = {
 };
 
 const LoginPage = () => {
-  const token = sessionStorage.getItem('UserID');
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [loginTrigger, { isSuccess, isLoading, isError, data }] =
     useLoginMutation();
@@ -28,13 +30,19 @@ const LoginPage = () => {
     loginTrigger(loginData);
   };
 
-  useEffect(() => {
-    if (token) navigate('../dashboard', { replace: true });
+  useLayoutEffect(() => {
+    const session = new Token();
+    const loggedStatus = session.isValid();
+    const userInfo = session.loadToken();
+
+    dispatch(setUser(userInfo));
+    if (loggedStatus) navigate('../dashboard', { replace: true });
   }, []);
 
   useEffect(() => {
-    if (isSuccess) {
-      sessionStorage.setItem('UserID', JSON.stringify(data?.token));
+    if (isSuccess && data) {
+      Token.setSessionToken(data.token);
+      dispatch(setUser(new Token().loadToken()));
       navigate('../dashboard', { replace: true });
     }
   }, [isSuccess]);

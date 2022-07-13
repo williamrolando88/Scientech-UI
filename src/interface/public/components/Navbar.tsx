@@ -1,13 +1,33 @@
-import { Disclosure } from '@headlessui/react';
+import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { MenuIcon, UserIcon, XIcon } from '@heroicons/react/outline';
+import { ViewGridIcon } from '@heroicons/react/solid';
+import { Fragment } from 'react';
+import { useSelector } from 'react-redux';
 import { Link, NavLink } from 'react-router-dom';
+
+type UserInfo = {
+  name: string;
+  role: string;
+  email: string;
+};
+interface State {
+  user: UserInfo | null;
+}
 
 const navigation = [
   { name: 'Inicio', to: '/' },
   { name: 'Contacto', to: '/contacto' },
 ];
 
+const profileMenu = [
+  { name: 'Mi perfil', to: '#' },
+  { name: 'Cerrar sesión', to: '#' },
+];
+
 const Navbar = () => {
+  const name = useSelector((state: State) => state.user?.name) || null;
+  console.log(name && name.split(' ')[0]);
+
   return (
     <Disclosure as="nav" className="bg-sky-600">
       {({ open }) => (
@@ -62,13 +82,63 @@ const Navbar = () => {
                 </div>
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                <Link
-                  to="/login"
-                  className="flex items-center gap-1 rounded-full bg-sky-800 p-1 px-2 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-                >
-                  <UserIcon className="h-6 w-6" aria-hidden="true" />
-                  <span className="text-sm">Iniciar sesión</span>
-                </Link>
+                {name ? (
+                  <>
+                    <Menu
+                      as="div"
+                      className="relative ml-3 border border-transparent "
+                    >
+                      <div className="flex gap-px">
+                        <Menu.Button className="flex rounded-l-full bg-sky-800 p-2 text-sm text-white/80 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                          <span className="sr-only">Open user menu</span>
+                          <span>{`Hola, ${name.split(' ')[0]}`}</span>
+                        </Menu.Button>
+                        <Link
+                          to="/dashboard"
+                          className="flex items-center gap-1 rounded-r-full bg-sky-800  p-1 px-2 text-white/80 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                        >
+                          <ViewGridIcon
+                            className="h-6 w-6"
+                            aria-hidden="true"
+                          />
+                          <span className="text-sm">Apps</span>
+                        </Link>
+                      </div>
+                      <Transition
+                        as={Fragment}
+                        enter="transition ease-out duration-100"
+                        enterFrom="transform opacity-0 scale-95"
+                        enterTo="transform opacity-100 scale-100"
+                        leave="transition ease-in duration-75"
+                        leaveFrom="transform opacity-100 scale-100"
+                        leaveTo="transform opacity-0 scale-95"
+                      >
+                        <Menu.Items className="absolute right-0 z-50 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                          {profileMenu.map((item, i) => (
+                            <Menu.Item key={i}>
+                              <a
+                                href={item.to}
+                                className={
+                                  'block bg-gray-100 px-4 py-2 text-sm text-gray-700 hover:bg-gray-200'
+                                }
+                              >
+                                {item.name}
+                              </a>
+                            </Menu.Item>
+                          ))}
+                        </Menu.Items>
+                      </Transition>
+                    </Menu>
+                  </>
+                ) : (
+                  <Link
+                    to="/login"
+                    className="flex items-center gap-1 rounded-full bg-sky-800 p-1 px-2 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                  >
+                    <UserIcon className="h-6 w-6" aria-hidden="true" />
+                    <span className="text-sm">Iniciar sesión</span>
+                  </Link>
+                )}
               </div>
             </div>
           </div>
