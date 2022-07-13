@@ -7,12 +7,12 @@ class Token {
   }
 
   tokenExists = () => {
-    if (sessionStorage.getItem('User')) return true;
+    if (localStorage.getItem('User')) return true;
     else return false;
   };
 
   getToken = () => {
-    return sessionStorage.getItem('User') as string;
+    return localStorage.getItem('User') as string;
   };
 
   isValid = () => {
@@ -23,7 +23,7 @@ class Token {
 
       if (exp * 1000 > now) return true;
     } else {
-      sessionStorage.removeItem('User');
+      localStorage.removeItem('User');
     }
     return false;
   };
@@ -42,7 +42,7 @@ class Token {
   };
 
   static setSessionToken = (token: string) => {
-    sessionStorage.setItem('User', JSON.stringify(token));
+    localStorage.setItem('User', JSON.stringify(token));
   };
 }
 
