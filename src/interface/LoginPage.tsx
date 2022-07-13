@@ -3,16 +3,22 @@ import LoginIcon from '@mui/icons-material/Login';
 import { useEffect, useState } from 'react';
 import { useLoginMutation } from '../store/services/scientech';
 import { useNavigate } from 'react-router-dom';
-import { type } from 'os';
+import Token from '../modules/tokenClass';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../store/reducers/user';
 
 const initialLoginData = {
   email: '',
   password: '',
 };
 
-const LoginPage = () => {
-  const token = sessionStorage.getItem('UserID');
+interface LoginProps {
+  isLogged: boolean;
+}
+
+const LoginPage = ({ isLogged }: LoginProps) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [loginTrigger, { isSuccess, isLoading, isError, data }] =
     useLoginMutation();
@@ -29,12 +35,13 @@ const LoginPage = () => {
   };
 
   useEffect(() => {
-    if (token) navigate('../dashboard', { replace: true });
+    if (isLogged) navigate('../dashboard', { replace: true });
   }, []);
 
   useEffect(() => {
-    if (isSuccess) {
-      sessionStorage.setItem('UserID', JSON.stringify(data?.token));
+    if (isSuccess && data) {
+      Token.setSessionToken(data.token);
+      dispatch(setUser(new Token().loadToken()));
       navigate('../dashboard', { replace: true });
     }
   }, [isSuccess]);
