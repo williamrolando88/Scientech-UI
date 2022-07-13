@@ -15,10 +15,16 @@ class Token {
     return sessionStorage.getItem('User') as string;
   };
 
-  isValid = (token: string) => {
-    const { exp } = jwtDecode(token) as DecodedToken;
-    const now = new Date().getTime();
-    if (exp * 1000 > now) return true;
+  isValid = () => {
+    if (this.tokenExists()) {
+      this.#token = this.getToken();
+      const { exp } = jwtDecode(this.#token) as DecodedToken;
+      const now = new Date().getTime();
+
+      if (exp * 1000 > now) return true;
+    } else {
+      sessionStorage.removeItem('User');
+    }
     return false;
   };
 
@@ -28,13 +34,8 @@ class Token {
   };
 
   loadToken = () => {
-    if (this.tokenExists()) {
-      this.#token = this.getToken();
-      if (this.isValid(this.#token)) {
-        return this.getUserInfo(this.#token);
-      } else {
-        sessionStorage.removeItem('User');
-      }
+    if (this.isValid()) {
+      return this.getUserInfo(this.#token);
     }
 
     return null;
