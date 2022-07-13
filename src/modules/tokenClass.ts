@@ -1,21 +1,5 @@
 import jwtDecode from 'jwt-decode';
 
-type DecodedToken = {
-  user_id: string;
-  user_data: {
-    name: string;
-    email: string;
-  };
-  role: string;
-  exp: number;
-};
-
-type UserData = {
-  name: string;
-  email: string;
-  role: string;
-};
-
 class Token {
   #token: string;
   constructor() {
