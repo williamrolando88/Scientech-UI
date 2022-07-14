@@ -5,7 +5,7 @@ import PrivateIndex from './interface/private/components/PrivateIndex';
 import Contact from './interface/public/pages/Contact';
 import Home from './interface/public/pages/Home';
 import Public from './interface/public/Public';
-import ImportCalculator from './interface/private/apps/ImportCalculator';
+import ImportCalculator from './interface/private/apps/importCalculator/ImportCalculator';
 import InvoiceReader from './interface/private/apps/InvoiceReader';
 import Token from './modules/tokenClass';
 import { useDispatch } from 'react-redux';
