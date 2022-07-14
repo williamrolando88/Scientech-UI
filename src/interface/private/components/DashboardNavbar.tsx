@@ -12,13 +12,13 @@ const dashboardLinks: DashboardNavLink[] = [
 
 const DashboardNavbar = () => {
   return (
-    <>
+    <nav className="flex flex-col">
       {dashboardLinks.map((link, i) => (
         <NavLink key={i} to={link.to}>
           {link.name}
         </NavLink>
       ))}
-    </>
+    </nav>
   );
 };
 

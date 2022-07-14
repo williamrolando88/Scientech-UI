@@ -1,5 +1,5 @@
 const ImportCalculator = () => {
-  return <div>ImportCalculator</div>;
+  return <section>ImportCalculator</section>;
 };
 
 export default ImportCalculator;

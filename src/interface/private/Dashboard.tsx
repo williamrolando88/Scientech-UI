@@ -3,10 +3,10 @@ import DashboardNavbar from './components/DashboardNavbar';
 
 const Dashboard = () => {
   return (
-    <>
+    <main className="flex">
       <DashboardNavbar />
       <Outlet />
-    </>
+    </main>
   );
 };
 
