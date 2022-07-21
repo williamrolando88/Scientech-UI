@@ -1,20 +1,22 @@
 import { TrashIcon } from '@heroicons/react/outline';
 
-const Article = () => {
+interface ArticleProps {
+  data: ArticleShape;
+  index: number;
+}
+
+const Article = ({ data, index }: ArticleProps) => {
   return (
-    <div className="text-sm">
+    <div className="flex text-sm">
       <div className="w-12 rounded-md border bg-sky-400 text-center">
         <label className="font-bold">{index + 1}</label>
       </div>
-
-      {inputArray.map((input, i) => (
-        <InputField key={i} input={input} />
+      {Object.keys(data.input).map((inputKey, i) => (
+        <InputField inputObject={data.input} inputKey={inputKey} key={i} />
       ))}
-
-      {outputArray.map((field, i) => (
-        <OutputField key={i} output={field} />
+      {Object.keys(data.output).map((outputKey, i) => (
+        <OutputField key={i} outputData={data.output[outputKey]} />
       ))}
-
       <div className="rounded-md border focus-within:bg-red-500 focus-within:text-red-900 hover:bg-red-500 hover:text-red-900">
         <button className="flex w-full items-center justify-center gap-1 outline-none">
           <TrashIcon className="h-5 w-5" />
@@ -27,34 +29,32 @@ const Article = () => {
 
 export default Article;
 
-const InputField = () => {
+interface InputFieldProps {
+  inputObject: ArticleInput;
+  inputKey: string;
+}
+
+const InputField = ({ inputObject, inputKey }: InputFieldProps) => {
   return (
-    <div key={input.name} className="rounded-md border px-2">
+    <div className="rounded-md border px-2">
       <div className="flex items-center gap-1 py-1">
-        {input.name === 'precioUnitario' ? (
+        {inputKey === 'precioUnitario' && (
           <span className="font-semibold">$</span>
-        ) : null}
+        )}
         <input
           className={`w-full grow select-text bg-transparent ${
-            input.name === 'cantidad' ? 'text-center' : 'text-left'
+            inputKey === 'cantidad' ? 'text-center' : 'text-left'
           }`}
-          name={input.name}
-          onFocus={(e) => e.target.select()}
-          value={input.value}
-          type={input.name === 'descripcion' ? 'text' : 'number'}
-          pattern={input.name === 'descripcion' ? '' : '[0-9]'}
+          value={inputObject[inputKey]}
+          type={inputKey === 'descripcion' ? 'text' : 'number'}
           min="0"
         />
         <span className="text-xs">
           {`${
-            input.name === 'arancel'
+            inputKey === 'arancel' || inputKey === 'margen'
               ? '%'
-              : input.name === 'margen'
-              ? '%'
-              : input.name === 'peso'
+              : inputKey === 'peso'
               ? '[lb]'
-              : input.name === 'precioUnitario'
-              ? ''
               : ''
           }`}
         </span>
@@ -63,78 +63,17 @@ const InputField = () => {
   );
 };
 
-const OutputField = () => {
+interface OutputProps {
+  outputData: number;
+}
+
+const OutputField = ({ outputData }: OutputProps) => {
   return (
-    <div key={field.name} className="rounded-md border bg-neutral-200 px-2">
+    <div className="rounded-md border bg-neutral-200 px-2">
       <div className="flex items-center gap-1">
         <span>$</span>
-        <span className="grow">{field.value}</span>
+        <span className="grow">{outputData}</span>
       </div>
     </div>
   );
 };
-
-/*
-
-<tr
-      className="text-sm"
-      onBlur={() => dispatch(updateArticle({ article: userInput, id }))}>
-      <td className="w-12 rounded-md border bg-sky-400 text-center">
-        <label className="font-bold">{index + 1}</label>
-      </td>
-
-      {inputArray.map((input) => (
-        <td key={input.name} className="rounded-md border px-2">
-          <div className="flex items-center gap-1 py-1">
-            {input.name === 'precioUnitario' ? (
-              <span className="font-semibold">$</span>
-            ) : null}
-            <input
-              className={`w-full grow select-text bg-transparent ${
-                input.name === 'cantidad' ? 'text-center' : 'text-left'
-              }`}
-              name={input.name}
-              onFocus={(e) => e.target.select()}
-              value={input.value}
-              onChange={handleChange}
-              type={input.name === 'descripcion' ? 'text' : 'number'}
-              pattern={input.name === 'descripcion' ? '' : '[0-9]'}
-              min="0"
-            />
-            <span className="text-xs">
-              {`${
-                input.name === 'arancel'
-                  ? '%'
-                  : input.name === 'margen'
-                  ? '%'
-                  : input.name === 'peso'
-                  ? '[lb]'
-                  : input.name === 'precioUnitario'
-                  ? ''
-                  : ''
-              }`}
-            </span>
-          </div>
-        </td>
-      ))}
-      
-      {outputArray.map((field) => (
-        <td key={field.name} className="rounded-md border bg-neutral-200 px-2">
-          <div className="flex items-center gap-1">
-            <span>$</span>
-            <span className="grow">{field.value}</span>
-          </div>
-        </td>
-      ))}
-
-      <td className="rounded-md border focus-within:bg-red-500 focus-within:text-red-900 hover:bg-red-500 hover:text-red-900">
-        <button
-          onClick={() => dispatch(removeArticle(id))}
-          className="flex w-full items-center justify-center gap-1 outline-none">
-          <TrashIcon className="h-5 w-5" />
-          <span>Borrar</span>
-        </button>
-      </td>
-    </tr>
-
-*/
