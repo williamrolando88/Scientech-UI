@@ -1,5 +1,4 @@
 import { PlusCircleIcon } from '@heroicons/react/solid';
-import React from 'react';
 
 interface Header {
   value: string;
@@ -8,7 +7,40 @@ interface Header {
   action?: () => void;
 }
 
-const ArticleTableHeader = ({ header }: { header: Header }) =>
+const tableHeaders = [
+  { value: 'No.', width: 'w-10', isButton: false },
+  { value: 'Cant.', width: 'w-16', isButton: false },
+  { value: 'Descripción', width: 'w-80', isButton: false },
+  { value: 'Peso Unitario', width: 'w-16', isButton: false },
+  { value: 'Precio Unitario', width: 'w-16', isButton: false },
+  { value: 'Arancel', width: 'w-16', isButton: false },
+  { value: 'Margen', width: 'w-16', isButton: false },
+  { value: 'Costo Total', width: 'w-16', isButton: false },
+  { value: 'Ganancia Unitaria', width: 'w-16', isButton: false },
+  { value: 'PVP Unitario', width: 'w-16', isButton: false },
+  {
+    value: 'Agregar Item',
+    width: 'w-16',
+    isButton: true,
+    action: () => {
+      console.log('add row!');
+    },
+  },
+];
+
+const ArticleTableHeader = () => {
+  return (
+    <div className="flex">
+      {tableHeaders.map((header, i) => (
+        <HeaderItem header={header} key={i} />
+      ))}
+    </div>
+  );
+};
+
+export default ArticleTableHeader;
+
+const HeaderItem = ({ header }: { header: Header }) =>
   header.isButton ? (
     <div
       className={`flex cursor-pointer items-center justify-center gap-1  rounded-md border bg-green-300 py-1 hover:bg-emerald-600 hover:text-white ${header.width}`}
@@ -22,5 +54,3 @@ const ArticleTableHeader = ({ header }: { header: Header }) =>
       {header.value}
     </div>
   );
-
-export default ArticleTableHeader;
